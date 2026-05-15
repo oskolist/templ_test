@@ -27,7 +27,7 @@ RUN CGO_ENABLED=0 go mod tidy && \
 # Production
 FROM gcr.io/distroless/base-debian12 AS deploy-stage
 WORKDIR /
-COPY --from=build-stage /app/app /app
-EXPOSE 8080
+COPY --from=builder /app/app /app
+EXPOSE 3000
 USER nonroot:nonroot
 ENTRYPOINT ["/app"]
